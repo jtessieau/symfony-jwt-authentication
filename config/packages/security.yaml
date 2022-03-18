@@ -22,10 +22,13 @@ security:
                 check_path: /login
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        restricted:
+            pattern: ^/restricted
+            stateless: true
+            jwt: ~
 
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/restricted, roles: ROLE_USER }
 
 when@test:
     security:
